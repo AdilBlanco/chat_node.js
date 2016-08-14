@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Real time chat using Node.js
+        </title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="chat">
+            <input type="text" class="chat-name" placeholder="Enter your name">
+            <div class="chat-messages"></div>
+            <textarea class="chat-textarea" placeholder="Type your message"></textarea>
+            <div class="chat-status"> Status: <span> Idle </span> </div>
+        </div>
+        <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+        <script>
+        (function() {
+            var get_node = function(s) {
+                return document.querySelector(s);
+            },
+            
+            // Get required nodes
+            textarea = get_node('.chat-textarea');
+            chatName = get_node('.chat-name');
+            
+            try {
+                var socket = io.connect('http://localhost:8080');
+            } catch(r) {
+                // Set status to warn user
+            }
+            
+            if (socket !== undefined) {
+                console.log('OK');
+            }
+             
+        })();
+        </script>
+    </body>
+</html>
